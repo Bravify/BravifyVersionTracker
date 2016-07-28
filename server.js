@@ -5,22 +5,13 @@ var config;
 
 try {
   config = require('./config.json');
-} catch(e) {
-  console.log("Error reading config file!");
-  process.exit(99);
-}
+} catch(e) {config = {}}
 
 var logging = (config.logging || false);
-var port, repo;
 
-try {
-  repo = process.env.BVT_REPO || config.repository || 'Bravify/Bravify';
-  port = process.env.BVT_PORT || config.port || 8080;
-  if(!port || !repo) {throw true;}
-} catch(e) {
-  console.log("Config file doesn't include all required information!");
-  process.exit(98);
-}
+var repo = process.env.BVT_REPO || config.repository || 'Bravify/Bravify';
+var port = process.env.BVT_PORT || config.port || 8080;
+
 
 var github = require('octonode');
 var client = github.client({
