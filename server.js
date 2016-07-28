@@ -7,7 +7,7 @@ try {
   config = require('./config.json');
 } catch(e) {config = {}}
 
-var logging = (config.logging || false);
+var logging = (config.logging || true);
 
 var repo = process.env.BVT_REPO || config.repository || 'Bravify/Bravify';
 var port = process.env.BVT_PORT || config.port || 8080;
