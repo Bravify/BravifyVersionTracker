@@ -14,8 +14,8 @@ var logging = (config.logging || false);
 var port, repo;
 
 try {
-  repo = config.repository;
-  port = config.port;
+  repo = process.env.BVT_REPO || config.repository || 'Bravify/Bravify';
+  port = process.env.BVT_PORT || config.port || 8080;
   if(!port || !repo) {throw true;}
 } catch(e) {
   console.log("Config file doesn't include all required information!");
@@ -23,7 +23,10 @@ try {
 }
 
 var github = require('octonode');
-var client = github.client();
+var client = github.client({
+  username: process.env.BVT_USERNAME || null,
+  password: process.env.BVT_PASSWORD || null
+});
 var ghrepo = client.repo(repo);
 
 http.createServer(function (req, res) {
