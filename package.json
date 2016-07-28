@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "octonode": "^0.7.5",
-    "pmx": "^0.6.1"
+    "octonode": "^0.7.5"
   }
 }
